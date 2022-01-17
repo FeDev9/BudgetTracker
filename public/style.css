@@ -1,0 +1,332 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600&display=swap');
+
+body {
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Outfit';
+}
+
+/* === Navbar ===== */
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1rem;
+    background-color: #283593;
+    color: white;
+}
+
+.navbar ul {
+    display: flex;
+}
+
+.navbar ul li {
+    list-style-type: none;
+    padding: 1rem;
+    margin: 1rem;
+    border: 1px solid white;
+}
+
+.navbar ul li a {
+    text-decoration: none;
+    color: white;
+}
+
+.navbar .logo {
+    padding: 1rem;
+    margin: 1rem;
+}
+
+/* === Login/Register ===== */
+
+.login-cnt, .register-cnt {
+    position: absolute;
+    top: 20%;
+    left: 33%;
+    width: 33%;
+    background-color: #283593;
+    border-radius: 20px;
+    padding: 1rem;
+    margin: 1rem 0;
+}
+
+.login-cnt .title, .register-cnt .title{
+    color: white;
+    text-align: center;
+}
+
+.login-cnt .input-box, .register-cnt .input-box {
+    display: flex;
+    width: 90%;
+    flex-direction: column;
+    border-radius: 20px;
+    background-color: whitesmoke ;
+    padding: 1rem;
+    margin: 1rem;
+}
+
+.login-cnt form , .register-cnt form, .add-cnt{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    
+}
+
+.login-cnt form .input-box label, .register-cnt form .input-box label {
+
+    text-transform: uppercase;
+    text-align: center;
+    font-size: small;
+    margin-bottom: 0.5rem;
+}
+
+.login-cnt form input, .register-cnt form input {
+    font-family: 'Outfit';
+    border: 1px solid whitesmoke;
+    border-radius: 20px;
+    padding: 0.75rem;
+    margin: 0 0.75rem;
+    outline: transparent;
+    text-align: center;
+    font-size: 18px;
+
+}
+
+.login-cnt form input:focus, .register-cnt form input:focus {
+    transform: scale(1.07);
+    transition: 0.4s ease-in-out; 
+    background-color: #bebebe70;
+}
+
+.login-cnt form button, .register-cnt form button{
+
+    padding: 1rem;
+    margin: 1rem;
+    background-color: whitesmoke;
+    border-radius: 20px;
+    width: 25%;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.login-cnt form button:hover, .register-cnt form button:hover{
+
+    transform: scale(1.1);
+    transition: 0.4s ease-in-out;
+}
+
+.msg {
+    background-color: #f93154;
+    padding: 1rem;
+    border-radius: 20px;
+    text-align: center;
+    color: rgb(105, 0, 0);
+    margin: 1rem;
+}
+
+
+/* === Profile ===== */
+
+.profile-cnt {
+    display: flex;
+    
+}
+
+.profile-card {
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: rgb(228, 227, 227);
+    border-radius: 20px;
+    margin: 2rem;
+}
+
+.profile-card {
+    flex: 1;
+    
+}
+
+.profile-page {
+    flex: 2;
+    margin-left: 0;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin: 2rem;
+}
+
+.profile-card .avatar-cnt {
+    background-color: #283593;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    border-radius: 20px;
+}
+
+.profile-card .avatar-cnt img {
+    width: 65%;
+    
+}
+
+.profile-card .card-title {
+    text-align: center;
+    font-size: 20px;
+    margin-bottom: 0.5rem;
+}
+
+.profile-card a {
+    text-decoration: none;
+    color: white;
+    background-color: #283593;
+    padding: 1rem 2rem;
+    border-radius: 20px;
+
+}
+
+.profile-page .profile-header {
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    width: 100%;
+}
+
+.profile-page .bal-inc-exp, .profile-page .add-transaction {
+    flex:1;
+    background-color: white;
+    border-radius: 20px;
+    margin: 0 2rem;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: 300px;
+    background-color: rgb(228, 227, 227);
+}
+
+.profile-page .bal-inc-exp {
+    justify-content: space-around;
+}
+
+.profile-page .add-transaction form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.profile-page .add-transaction .input-box {
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-page .bal-inc-exp .title {
+    text-transform: uppercase;
+    margin: 0.5rem;
+}
+
+.profile-page .bal-inc-exp .value {
+    text-align: center;
+    margin: 0.5rem;
+}
+
+.profile-page .bal-inc-exp .inc {
+
+    background-color: #00B74A;
+    width: 75%;
+    border-radius: 20px;
+}
+
+.profile-page .bal-inc-exp .exp {
+    background-color: #f93154;
+    width: 75%;
+    border-radius: 20px;
+}
+
+.profile-page .bal-inc-exp .bal {
+    background-color: darkgray;
+    width: 75%;
+    border-radius: 20px;
+}
+
+.profile-page .bal-inc-exp .title {
+    text-align: center;
+}
+
+
+
+/* === transactions ===*/
+
+.transaction {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.transaction .single {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: rgb(228, 227, 227);
+    margin: 1rem 2rem;
+    padding: 0 0.5rem;
+    border-radius: 0 20px 20px 0;
+}
+
+.transaction .single .data {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+}
+.transaction .single a {
+    text-decoration: none;
+    color: black;
+    padding: 0 1rem;
+}
+
+.transaction .negative {
+    border-left: 5px solid red;
+}
+
+.transaction .positive {
+    border-left: 5px solid green;
+}
+
+/* === Add transaction ===*/
+
+.add-transaction .title {
+    text-transform: uppercase;
+}
+
+.add-transaction .input-box {
+    display: flex;
+    width: 90%;
+    flex-direction: column;
+    border-radius: 20px;
+    background-color: whitesmoke ;
+    padding: 1rem;
+    margin: 1rem;
+}
+
+.add-transaction .input-box label {
+    text-transform: uppercase;
+    text-align: center;
+    font-size: small;
+    margin-bottom: 0.5rem;
+}
+
+.add-transaction .input-box input {
+
+    font-family: 'Outfit';
+    border: 1px solid whitesmoke;
+    border-radius: 20px;
+    padding: 0.75rem;
+    margin: 0 0.75rem;
+    outline: transparent;
+    text-align: center;
+    font-size: 18px;
+
+}

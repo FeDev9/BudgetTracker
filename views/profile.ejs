@@ -1,0 +1,80 @@
+<%- include('./header.ejs') %>
+
+    <div class="profile-cnt">
+        <div class="profile-card">
+            <div class="avatar-cnt">
+                <img src="/img/avatar.png" alt="user pic" class="avatar">
+            </div>
+            <h5 class="card-title">
+                Ciao, <%= user.name %>!
+            </h5>
+            <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut sapiente sit consectetur
+                nostrum. Natus eius fugit et odio voluptates ullam! Impedit nobis aut magni rerum explicabo dolores
+                architecto voluptatum at!</p>
+            <a href="">
+                <%= user.email %>
+            </a>
+        </div>
+        <div class="profile-page">
+            <div class="profile-header">
+                <div class="bal-inc-exp">
+                    <div class="bal">
+                        <h4 class="title">Balance</h4>
+                        <p class="value">
+                            <%= income + expense %>
+                        </p>
+                    </div>
+                    <div class="inc">
+                        <h4 class="title">Income</h4>
+                        <p class="value">
+                            <%= income %>
+                        </p>
+                    </div>
+                    <div class="exp">
+                        <h4 class="title">Expense</h4>
+                        <p class="value">
+                            <%= expense %>
+                        </p>
+                    </div>
+
+                </div>
+                <div class="add-transaction">
+                    <h4 class="title">Add Transaction</h4>
+                    <form action="/transactions/add-transaction" class="add-cnt" method="POST">
+                        <div class="input-box">
+                            <label for="type">Type</label>
+                            <input type="text" id="type" name="type">
+                        </div>
+                        <div class="input-box">
+                            <label for="value">Spesa</label>
+                            <input type="text" id="value" name="value">
+                        </div>
+                        <button type="submit">Add</button>
+                    </form>
+                </div>
+            </div>
+            <div class="transaction">
+                <% if (transactions.length> 10) {
+                    const loop = 10;
+                    } else {
+                    loop = transactions.length;
+                    }%>
+                    <% for( let index=0; index < loop; index++ ) { %>
+                        <div class="single <%- transactions[index].value < 0 ? 'negative' : 'positive' %> ">
+                            <div class="data">
+                                <p>
+                                    <%= transactions[index].type %>
+                                </p>
+                                <p>
+                                    <%= transactions[index].value %>
+                                </p>
+                            </div>
+                            <a href="#" class="delete">Delete</a>
+                        </div>
+
+                        <% } %>
+            </div>
+        </div>
+    </div>
+
+    <%- include('./footer.ejs') %>
