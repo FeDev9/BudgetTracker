@@ -101,7 +101,6 @@ module.exports = {
                     process.env.JWT_SECRET
                 );
 
-                console.log(decoded);
 
                 //Check if the user still exists
 
@@ -121,10 +120,10 @@ module.exports = {
 
             } catch (err) {
                 console.log(err);
-                return next();
+                return res.redirect('/login');
             }
         } else {
-            next();
+            res.redirect('/login');
         }
 
 

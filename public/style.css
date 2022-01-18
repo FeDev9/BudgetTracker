@@ -19,21 +19,29 @@ body {
 
 .navbar ul {
     display: flex;
+    margin-right: 2rem;
 }
 
 .navbar ul li {
     list-style-type: none;
     padding: 1rem;
-    margin: 1rem;
-    border: 1px solid white;
+    margin: 0.5rem 1.5rem;
+    border-radius: 20px;
+    background-color: white;
+}
+
+.navbar ul li:hover {
+    transform: scale(1.1);
+    transition: 0.4s ease-in-out;
 }
 
 .navbar ul li a {
     text-decoration: none;
-    color: white;
+    color: #283593;
 }
 
 .navbar .logo {
+    font-size: 25px;
     padding: 1rem;
     margin: 1rem;
 }
@@ -203,7 +211,7 @@ body {
     display: flex;
     align-items: center;
     flex-direction: column;
-    height: 300px;
+    height: 320px;
     background-color: rgb(228, 227, 227);
 }
 
@@ -255,6 +263,11 @@ body {
     text-align: center;
 }
 
+.profile-page .transaction .title {
+    margin-top: 2rem;
+    text-align: center;
+}
+
 
 
 /* === transactions ===*/
@@ -299,6 +312,7 @@ body {
 
 .add-transaction .title {
     text-transform: uppercase;
+margin: 1em;
 }
 
 .add-transaction .input-box {
@@ -307,8 +321,8 @@ body {
     flex-direction: column;
     border-radius: 20px;
     background-color: whitesmoke ;
-    padding: 1rem;
-    margin: 1rem;
+    padding: 0.5rem;
+    margin: 0.5rem;
 }
 
 .add-transaction .input-box label {
@@ -318,15 +332,44 @@ body {
     margin-bottom: 0.5rem;
 }
 
+.add-transaction .input-box label span {
+    text-transform: lowercase;
+}
+
 .add-transaction .input-box input {
 
     font-family: 'Outfit';
     border: 1px solid whitesmoke;
     border-radius: 20px;
-    padding: 0.75rem;
-    margin: 0 0.75rem;
+    padding: 0.5rem;
+    margin: 0 0.5rem;
     outline: transparent;
     text-align: center;
     font-size: 18px;
 
+}
+
+.add-transaction form input:focus{
+    transform: scale(1.07);
+    transition: 0.4s ease-in-out; 
+    background-color: #bebebe70;
+}
+
+.add-transaction form button{
+
+    padding: 0.5rem;
+    margin: 0.5rem;
+    background-color: #283593;
+    border-radius: 20px;
+    width: 33%;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-size: 15px;
+    color: white;
+}
+
+.add-transaction form button:hover{
+
+    transform: scale(1.1);
+    transition: 0.4s ease-in-out;
 }

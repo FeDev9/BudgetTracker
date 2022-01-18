@@ -21,19 +21,19 @@
                     <div class="bal">
                         <h4 class="title">Balance</h4>
                         <p class="value">
-                            <%= income + expense %>
+                            <%= (income + expense).toFixed(2) %>
                         </p>
                     </div>
                     <div class="inc">
-                        <h4 class="title">Income</h4>
+                        <h4 class="title">Incomes</h4>
                         <p class="value">
-                            <%= income %>
+                            <%= income.toFixed(2) %>
                         </p>
                     </div>
                     <div class="exp">
-                        <h4 class="title">Expense</h4>
+                        <h4 class="title">Expenses</h4>
                         <p class="value">
-                            <%= expense %>
+                            <%= expense.toFixed(2) %>
                         </p>
                     </div>
 
@@ -46,8 +46,11 @@
                             <input type="text" id="type" name="type">
                         </div>
                         <div class="input-box">
-                            <label for="value">Spesa</label>
-                            <input type="text" id="value" name="value">
+                            <label for="value">Expense/Income
+                                <br>
+                                <span>(- before for expenses)</span>
+                            </label>
+                            <input type="number" id="value" name="value" step="0.01">
                         </div>
                         <button type="submit">Add</button>
                     </form>
@@ -59,6 +62,7 @@
                     } else {
                     loop = transactions.length;
                     }%>
+                    <h2 class="title">Last <%= loop %> transactions</h2>
                     <% for( let index=0; index < loop; index++ ) { %>
                         <div class="single <%- transactions[index].value < 0 ? 'negative' : 'positive' %> ">
                             <div class="data">
@@ -69,7 +73,8 @@
                                     <%= transactions[index].value %>
                                 </p>
                             </div>
-                            <a href="#" class="delete">Delete</a>
+                            <a data-method="DELETE" href="/transactions/delete-transaction/<%=transactions[index].id%>"
+                                class="delete">Delete</a>
                         </div>
 
                         <% } %>
