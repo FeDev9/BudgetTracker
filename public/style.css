@@ -46,6 +46,35 @@ body {
     margin: 1rem;
 }
 
+/* === Homepage ===== */
+
+.homepage-cnt {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #bebebe70;
+    margin: 2rem 10rem;
+    padding: 2rem;
+    border-radius: 20px;
+}
+
+.homepage-cnt a {
+
+    padding: 0.5rem;
+    margin: 0.5rem;
+    background-color: #283593;
+    border-radius: 20px;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-size: 15px;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    padding: 1rem;
+}
+
+
 /* === Login/Register ===== */
 
 .login-cnt, .register-cnt {
@@ -151,11 +180,16 @@ body {
     background-color: rgb(228, 227, 227);
     border-radius: 20px;
     margin: 2rem;
+    height: 550px;
 }
 
 .profile-card {
     flex: 1;
     
+}
+
+.profile-card p {
+    text-align: center;
 }
 
 .profile-page {
@@ -230,6 +264,12 @@ body {
     flex-direction: column;
 }
 
+.profile-page .bal-inc-exp .title-cnt {
+    margin: 0.5rem  0 0  0;
+    text-transform: uppercase;
+    font-size: 17px;
+}
+
 .profile-page .bal-inc-exp .title {
     text-transform: uppercase;
     margin: 0.5rem;
@@ -268,6 +308,12 @@ body {
     text-align: center;
 }
 
+.transaction .title {
+    text-align: center;
+    text-transform: uppercase;
+    margin: 2rem;
+}
+
 
 
 /* === transactions ===*/
@@ -281,7 +327,6 @@ body {
 .transaction .single {
     display: flex;
     align-items: center;
-    justify-content: space-around;
     background-color: rgb(228, 227, 227);
     margin: 1rem 2rem;
     padding: 0 0.5rem;
@@ -296,16 +341,24 @@ body {
 }
 .transaction .single a {
     text-decoration: none;
-    color: black;
+    color: white;
+    font-weight: 600;
     padding: 0 1rem;
+    background-color: #f93154;
+    padding: 0.5rem;
+    border-radius: 20px;
+}
+.transaction .single .data p {
+    width: 100px;
+    overflow: hidden;
 }
 
 .transaction .negative {
-    border-left: 5px solid red;
+    border-left: 5px solid #f93154;
 }
 
 .transaction .positive {
-    border-left: 5px solid green;
+    border-left: 5px solid #00B74A;
 }
 
 /* === Add transaction ===*/

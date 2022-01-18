@@ -13,7 +13,7 @@ module.exports = {
             var income;
             var expense;
 
-            db.query('SELECT sum(value) FROM transactions WHERE value > 0 AND ?', { userId: req.user.id }, (err, results) => {
+            db.query('SELECT sum(value) FROM transactions WHERE value > 0 AND MONTH(date) = MONTH(now()) AND YEAR(date)=YEAR(now()) AND ?', { userId: req.user.id }, (err, results) => {
 
                 if (err) {
                     console.log(err);
@@ -30,11 +30,10 @@ module.exports = {
                 }
 
             });
-            db.query('SELECT sum(value) FROM transactions WHERE value < 0 AND ?', { userId: req.user.id }, (err, results) => {
+            db.query('SELECT sum(value) FROM transactions WHERE value < 0 AND MONTH(date) = MONTH(now()) AND YEAR(date)=YEAR(now()) AND ?', { userId: req.user.id }, (err, results) => {
 
                 if (err) {
                     console.log(err);
-                    res.redirect('/profile');
                 }
 
                 else {
@@ -72,30 +71,35 @@ module.exports = {
 
     add: (req, res) => {
 
-        const userId = req.user;
-        var { type, value } = req.body;
+        if (req.user != undefined) {
 
-        value = parseFloat(value);
+            const userId = req.user;
+            var { type, value } = req.body;
 
-        if (type === '' || typeof value !== 'number' || value === 0 || value === '') {
-            console.log('Types a valid input');
+            value = parseFloat(value);
+
+            if (type === '' || typeof value !== 'number' || value === 0 || value === '' || value > 100000 || value < -100000 || type.length > 30) {
+                console.log('Types a valid input');
+            } else {
+                db.query('INSERT INTO transactions SET ?', { type: type, value, userId: req.user.id }, (err, results) => {
+                    if (err) {
+                        console.log(err);
+                    }
+                    else {
+                        res.redirect('/profile');
+                    }
+                });
+            }
         } else {
-            db.query('INSERT INTO transactions SET ?', { type: type, value, userId: req.user.id }, (err, results) => {
-                if (err) {
-                    console.log(err);
-                }
-                else {
-                    res.redirect('/profile');
-                }
-            });
+            res.redirect('/');
         }
     },
 
     delete: (req, res) => {
 
-        const idTransaction = req.params.id;
 
-        console.log(req.user.id);
+
+        const idTransaction = req.params.id;
 
         db.query('SELECT * FROM transactions WHERE id = ? AND userId = ?', [idTransaction, req.user.id], (err, results) => {
 
@@ -117,6 +121,32 @@ module.exports = {
             }
 
         })
+
+    },
+
+    allTransactions: (req, res) => {
+
+        if (req.user != undefined) {
+            db.query("SELECT * FROM transactions WHERE ?", { userId: req.user.id }, (err, results) => {
+                if (err) {
+                    console.log(err);
+                    res.redirect('/profile');
+                } else {
+
+                    res.render('all', {
+                        transactions: results,
+                        user: req.user
+                    });
+                }
+            })
+
+        } else {
+            res.redirect('/');
+        }
+
+
+
+
 
     }
 

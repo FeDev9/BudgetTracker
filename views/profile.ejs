@@ -8,16 +8,17 @@
             <h5 class="card-title">
                 Ciao, <%= user.name %>!
             </h5>
-            <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut sapiente sit consectetur
-                nostrum. Natus eius fugit et odio voluptates ullam! Impedit nobis aut magni rerum explicabo dolores
-                architecto voluptatum at!</p>
-            <a href="">
-                <%= user.email %>
+            <p>In this page you can manage your budget and see the incomes and the expenses of the
+                current month.</p>
+            <p> Clicking on the button below, you can see all transactions!</p>
+            <a href="/transactions/all-transactions">
+                View all transactions
             </a>
         </div>
         <div class="profile-page">
             <div class="profile-header">
                 <div class="bal-inc-exp">
+                    <h3 class="title-cnt">This Month</h3>
                     <div class="bal">
                         <h4 class="title">Balance</h4>
                         <p class="value">
@@ -70,7 +71,10 @@
                                     <%= transactions[index].type %>
                                 </p>
                                 <p>
-                                    <%= transactions[index].value %>
+                                    <%= transactions[index].value %> $
+                                </p>
+                                <p>
+                                    <%= new Date(transactions[index].date).toLocaleDateString("en-US") %>
                                 </p>
                             </div>
                             <a data-method="DELETE" href="/transactions/delete-transaction/<%=transactions[index].id%>"

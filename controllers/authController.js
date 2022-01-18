@@ -35,9 +35,7 @@ module.exports = {
                     console.log(err);
                 }
                 else {
-                    return res.render('register', {
-                        msg: "User Registered"
-                    })
+                    res.redirect('/profile');
                 }
             });
         });
@@ -79,7 +77,7 @@ module.exports = {
                     }
 
                     res.cookie('jwt', token, cookieOptions);
-                    res.status(200).redirect("/");
+                    res.status(200).redirect("/profile");
                 }
 
 
@@ -106,7 +104,6 @@ module.exports = {
 
                 db.query('SELECT * FROM users WHERE id = ?', [decoded.id], (err, results) => {
 
-                    console.log(results);
 
                     if (!results) {
                         return next();
@@ -123,7 +120,7 @@ module.exports = {
                 return res.redirect('/login');
             }
         } else {
-            res.redirect('/login');
+            next();
         }
 
 
