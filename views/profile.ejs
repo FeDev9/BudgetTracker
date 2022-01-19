@@ -64,7 +64,7 @@
                     loop = transactions.length;
                     }%>
                     <h2 class="title">Last <%= loop %> transactions</h2>
-                    <% for( let index=0; index < loop; index++ ) { %>
+                    <% for( let index=loop-1; index>= 0; index-- ) { %>
                         <div class="single <%- transactions[index].value < 0 ? 'negative' : 'positive' %> ">
                             <div class="data">
                                 <p>
@@ -77,7 +77,7 @@
                                     <%= new Date(transactions[index].date).toLocaleDateString("en-US") %>
                                 </p>
                             </div>
-                            <a data-method="DELETE" href="/transactions/delete-transaction/<%=transactions[index].id%>"
+                            <a href="/transactions/delete-transaction/<%=transactions[index].id%>"
                                 class="delete">Delete</a>
                         </div>
 

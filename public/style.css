@@ -426,3 +426,39 @@ margin: 1em;
     transform: scale(1.1);
     transition: 0.4s ease-in-out;
 }
+
+/*=== filter form ====*/
+
+.filter-form form {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 1rem;
+    padding: 1rem;
+    background-color: #bebebe70;
+    border-radius: 20px;
+}
+
+.filter-form label {
+    padding: 1rem;
+
+}
+
+.filter-form form button {
+    padding: 0.5rem;
+    margin: 0.5rem;
+    background-color: #283593;
+    border-radius: 20px;
+    width: 20%;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-size: 15px;
+    color: white;
+}
+
+.filter-form form input {
+    border-radius: 20px;
+    font-family: 'Outfit';
+    padding: 0.5rem;
+    text-align: center;
+}

@@ -105,16 +105,16 @@ module.exports = {
 
             if (err) {
                 console.log(err);
-                res.redirect('/profile');
+                res.redirect('back');
             } else {
                 if (!results) {
-                    res.redirect('/profile');
+                    res.redirect('back');
                 } else {
                     db.query('DELETE FROM transactions WHERE id = ? AND userId = ?', [idTransaction, req.user.id], (err, results) => {
                         if (err) {
                             console.log(err);
                         } else {
-                            res.redirect('/profile');
+                            res.redirect('back');
                         }
                     })
                 }
@@ -143,6 +143,35 @@ module.exports = {
         } else {
             res.redirect('/');
         }
+    },
+
+    filter: (req, res) => {
+
+        const { dateStart, dateEnd } = req.body;
+
+
+
+        if (dateStart > dateEnd || dateStart == '' || dateEnd == '') {
+            res.render('all', {
+                transactions: [],
+                msg: "Input a valid type"
+            })
+        }
+
+        db.query(`SELECT * FROM transactions WHERE userId = ${req.user.id} AND date >= '${dateStart}' AND date <= '${dateEnd}' `, (err, results) => {
+            if (err) {
+                console.log(err);
+            } else {
+
+                res.render('all', {
+                    transactions: results,
+                    user: req.params,
+                })
+            }
+        })
+
+
+
 
 
 
