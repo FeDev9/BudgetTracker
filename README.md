@@ -79,7 +79,7 @@ Add transaction, delete it and filter all transactions in the specific page.
 
 <!-- ROADMAP -->
 ## Roadmap
-See the [open issues](https://github.com/fedev9/Budget-Tracker/issues) for a full list of proposed features (and known issues).
+See the [open issues](https://github.com/fedev9/BudgetTracker/issues) for a full list of proposed features (and known issues).
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -105,21 +105,21 @@ Don't forget to give the project a star! Thanks again!
 ## Contact
 Linkedin: [@FedericoCecconi](https://www.linkedin.com/in/federico-cecconi-27951619a/)
 
-Project Link: [https://github.com/fedev9/Budget-Tracker](https://github.com/fedev9/Budget-Tracker)
+Project Link: [https://github.com/fedev9/BudgetTracker](https://github.com/fedev9/BudgetTracker)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- MARKDOWN LINKS & IMAGES -->
-[contributors-shield]: https://img.shields.io/github/contributors/fedev9/Budget-Tracker.svg?style=for-the-badge
-[contributors-url]: https://github.com/fedev9/Budget-Tracker/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/fedev9/Budget-Tracker.svg?style=for-the-badge
-[forks-url]: https://github.com/fedev9/Budget-Tracker/network/members
-[stars-shield]: https://img.shields.io/github/stars/fedev9/Budget-Tracker.svg?style=for-the-badge
-[stars-url]: https://github.com/fedev9/Budget-Tracker/stargazers
-[issues-shield]: https://img.shields.io/github/issues/fedev9/Budget-Tracker.svg?style=for-the-badge
-[issues-url]: https://github.com/fedev9/Budget-Tracker/issues
-[license-shield]: https://img.shields.io/github/license/fedev9/Budget-Tracker.svg?style=for-the-badge
-[license-url]: https://github.com/fedev9/Budget-Tracker/blob/master/LICENSE.txt
+[contributors-shield]: https://img.shields.io/github/contributors/fedev9/BudgetTracker.svg?style=for-the-badge
+[contributors-url]: https://github.com/fedev9/BudgetTracker/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/fedev9/BudgetTracker.svg?style=for-the-badge
+[forks-url]: https://github.com/fedev9/BudgetTracker/network/members
+[stars-shield]: https://img.shields.io/github/stars/fedev9/BudgetTracker.svg?style=for-the-badge
+[stars-url]: https://github.com/fedev9/BudgetTracker/stargazers
+[issues-shield]: https://img.shields.io/github/issues/fedev9/BudgetTracker.svg?style=for-the-badge
+[issues-url]: https://github.com/fedev9/BudgetTracker/issues
+[license-shield]: https://img.shields.io/github/license/fedev9/BudgetTracker.svg?style=for-the-badge
+[license-url]: https://github.com/fedev9/BudgetTracker/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://www.linkedin.com/in/federico-cecconi-27951619a/
 [product-screenshot]: /public/img/transactions.png
