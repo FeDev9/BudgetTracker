@@ -1,0 +1,8 @@
+DB = BudgetTracker
+DB_HOST = localhost
+DB_USER=
+DB_PASSWORD = 
+DB_PORT = 
+JWT_SECRET = mypass
+JWT_EXPIRES_IN = 90d
+JWT_COOKIE_EXPIRES = 90
