@@ -1,5 +1,6 @@
 const { redirect } = require("express/lib/response");
 const db = require("../database");
+const model = require('../models/transactionsModel');
 
 module.exports = {
 
@@ -7,63 +8,37 @@ module.exports = {
     profile: (req, res) => {
 
         if (req.user) {
-
             /* recupero transazioni */
-
             var income;
             var expense;
 
-            db.query('SELECT sum(value) FROM transactions WHERE value > 0 AND MONTH(date) = MONTH(now()) AND YEAR(date)=YEAR(now()) AND ?', { userId: req.user.id }, (err, results) => {
-
-                if (err) {
-                    console.log(err);
+            model.getIncome({ userId: req.user.id }, (results) => {
+                if (!results[0]["sum(value)"]) {
+                    income = 0;
                 }
-
                 else {
-                    if (!results[0]["sum(value)"]) {
-                        income = 0;
-                    }
-                    else {
-                        income = results[0]["sum(value)"];
-                    }
-
+                    income = results[0]["sum(value)"];
                 }
-
             });
-            db.query('SELECT sum(value) FROM transactions WHERE value < 0 AND MONTH(date) = MONTH(now()) AND YEAR(date)=YEAR(now()) AND ?', { userId: req.user.id }, (err, results) => {
 
-                if (err) {
-                    console.log(err);
+            model.getExpense({ userId: req.user.id }, (results) => {
+                if (!results[0]["sum(value)"]) {
+                    expense = 0;
                 }
-
                 else {
-                    if (!results[0]["sum(value)"]) {
-                        expense = 0;
-                    }
-                    else {
-                        expense = results[0]["sum(value)"];
-                    }
+                    expense = results[0]["sum(value)"];
                 }
-
             });
 
-
-            db.query('SELECT * FROM transactions WHERE ?', { userId: req.user.id }, (err, results) => {
-
-                if (err) {
-                    console.log(err);
-                } else {
-
-                    res.render('profile', {
-                        user: req.user,
-                        transactions: results,
-                        income: income,
-                        expense: expense
-                    });
-
-                }
-
+            model.getTransactions({ userId: req.user.id }, (results) => {
+                res.render('profile', {
+                    user: req.user,
+                    transactions: results,
+                    income: income,
+                    expense: expense
+                });
             });
+
         } else {
             res.redirect('/login');
         }
@@ -81,13 +56,9 @@ module.exports = {
             if (type === '' || typeof value !== 'number' || value === 0 || value === '' || value > 100000 || value < -100000 || type.length > 30) {
                 console.log('Types a valid input');
             } else {
-                db.query('INSERT INTO transactions SET ?', { type: type, value, userId: req.user.id }, (err, results) => {
-                    if (err) {
-                        console.log(err);
-                    }
-                    else {
-                        res.redirect('/profile');
-                    }
+
+                model.addTransaction({ type: type, value, userId: req.user.id }, (results) => {
+                    res.redirect('/profile');
                 });
             }
         } else {
@@ -97,29 +68,20 @@ module.exports = {
 
     delete: (req, res) => {
 
-
-
         const idTransaction = req.params.id;
+        console.log(idTransaction);
+        console.log(req.user.id);
 
-        db.query('SELECT * FROM transactions WHERE id = ? AND userId = ?', [idTransaction, req.user.id], (err, results) => {
+        model.getUserTransaction({ id: req.params.id, userId: req.user.id }, async (results) => {
 
-            if (err) {
-                console.log(err);
+            console.log(results);
+            if (!results) {
                 res.redirect('back');
             } else {
-                if (!results) {
+                model.deleteTransaction({ id: req.params.id, userId: req.user.id }, (results) => {
                     res.redirect('back');
-                } else {
-                    db.query('DELETE FROM transactions WHERE id = ? AND userId = ?', [idTransaction, req.user.id], (err, results) => {
-                        if (err) {
-                            console.log(err);
-                        } else {
-                            res.redirect('back');
-                        }
-                    })
-                }
+                });
             }
-
         })
 
     },
@@ -127,19 +89,13 @@ module.exports = {
     allTransactions: (req, res) => {
 
         if (req.user != undefined) {
-            db.query("SELECT * FROM transactions WHERE ?", { userId: req.user.id }, (err, results) => {
-                if (err) {
-                    console.log(err);
-                    res.redirect('/profile');
-                } else {
 
-                    res.render('all', {
-                        transactions: results,
-                        user: req.user
-                    });
-                }
-            })
-
+            model.getTransactions({ userId: req.user.id }, (results) => {
+                res.render('all', {
+                    transactions: results,
+                    user: req.user
+                });
+            });
         } else {
             res.redirect('/');
         }
@@ -148,6 +104,8 @@ module.exports = {
     filter: (req, res) => {
 
         const { dateStart, dateEnd } = req.body;
+
+        console.log(dateEnd, dateStart);
 
 
 
@@ -158,25 +116,13 @@ module.exports = {
             })
         }
 
-        db.query(`SELECT * FROM transactions WHERE userId = ${req.user.id} AND date >= '${dateStart}' AND date <= '${dateEnd}' `, (err, results) => {
-            if (err) {
-                console.log(err);
-            } else {
+        model.filterTransactions({ userId: req.user.id, dateStart, dateEnd }, (results) => {
 
-                res.render('all', {
-                    transactions: results,
-                    user: req.params,
-                })
-            }
+            res.render('all', {
+                transactions: results,
+                user: req.params,
+            })
         })
-
-
-
-
-
-
-
-
     }
 
 }

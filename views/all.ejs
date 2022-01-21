@@ -20,24 +20,25 @@
 
     <div class="transaction">
         <h2 class="title">All transactions</h2>
-        <% for( let index=transactions.length -1 ; index>= 0; index-- ) { %>
-            <div class="single <%- transactions[index].value < 0 ? 'negative' : 'positive' %> ">
-                <div class="data">
-                    <p>
-                        <%= transactions[index].type %>
-                    </p>
-                    <p>
-                        <%= transactions[index].value %> $
-                    </p>
-                    <p>
-                        <%= new Date(transactions[index].date).toLocaleDateString("en-US") %>
-                    </p>
+        <% if(transactions==undefined) { transactions=[]; } %>
+            <% for( let index=transactions.length -1 ; index>= 0; index-- ) { %>
+                <div class="single <%- transactions[index].value < 0 ? 'negative' : 'positive' %> ">
+                    <div class="data">
+                        <p>
+                            <%= transactions[index].type %>
+                        </p>
+                        <p>
+                            <%= transactions[index].value %> $
+                        </p>
+                        <p>
+                            <%= new Date(transactions[index].date).toLocaleDateString("en-US") %>
+                        </p>
+                    </div>
+                    <a data-method="DELETE" href="/transactions/delete-transaction/<%=transactions[index].id%>"
+                        class="delete">Delete</a>
                 </div>
-                <a data-method="DELETE" href="/transactions/delete-transaction/<%=transactions[index].id%>"
-                    class="delete">Delete</a>
-            </div>
 
-            <% } %>
+                <% } %>
     </div>
 
 
