@@ -2,39 +2,40 @@ const db = require('../database');
 
 class AuthModel {
 
-    getEmail(userDetails, cb) {
+    async getEmail(userDetails) {
 
-        db.query('SELECT email FROM users WHERE ?', userDetails, (err, results) => {
 
-            try {
-                return cb(results);
 
-            } catch (err) {
-                throw err;
-            }
+        try {
+            const results = await db.promise().query('SELECT email FROM users WHERE ?', userDetails);
+            return results[0];
 
-        });
+        } catch (err) {
+            throw err;
+        }
+
+
     };
 
-    addUser(userDetails, cb) {
+    async addUser(userDetails) {
 
-        db.query('INSERT INTO users SET ?', userDetails, (err, results) => {
-            try {
-                return cb(results);
-            } catch (err) {
-                throw err;
-            }
-        });
+        try {
+            const results = await db.promise().query('INSERT INTO users SET ?', userDetails);
+            return results;
+        } catch (err) {
+            throw err;
+        }
     };
 
-    getUser(userDetails, cb) {
-        db.query('SELECT * FROM users WHERE ?', userDetails, (err, results) => {
-            try {
-                return cb(results);
-            } catch (err) {
-                throw err;
-            }
-        });
+    async getUser(userDetails) {
+
+        try {
+            const results = await db.promise().query('SELECT * FROM users WHERE ?', userDetails);
+            return results[0];
+        } catch (err) {
+            throw err;
+        }
+
     }
 
 }
