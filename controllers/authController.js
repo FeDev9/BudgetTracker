@@ -5,9 +5,9 @@ const model = require('../models/authModel');
 
 
 
-module.exports = {
+class AuthController {
 
-    register: (req, res) => {
+    register(req, res) {
 
         const { name, email, password, passwordConfirm } = req.body;
 
@@ -30,9 +30,9 @@ module.exports = {
                 res.redirect('/');
             });
         });
-    },
+    };
 
-    login: async (req, res) => {
+    async login(req, res) {
 
         const { email, password } = req.body;
 
@@ -70,9 +70,9 @@ module.exports = {
             }
 
         });
-    },
+    };
 
-    isLoggedIn: async (req, res, next) => {
+    async isLoggedIn(req, res, next) {
 
         if (req.cookies.jwt) {
             try {
@@ -103,9 +103,9 @@ module.exports = {
 
 
 
-    },
+    };
 
-    logout: (req, res) => {
+    logout(req, res) {
 
         res.cookie('jwt', '', {
             expires: new Date(
@@ -120,3 +120,5 @@ module.exports = {
 
 
 }
+
+module.exports = new AuthController();

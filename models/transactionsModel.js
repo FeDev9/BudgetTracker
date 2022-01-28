@@ -1,8 +1,9 @@
 const db = require('../database');
 
-module.exports = {
 
-    getIncome: (userDetails, cb) => {
+class TransactionsModel {
+
+    getIncome(userDetails, cb) {
 
         db.query('SELECT sum(value) FROM transactions WHERE value > 0 AND MONTH(date) = MONTH(now()) AND YEAR(date)=YEAR(now()) AND ?', userDetails, (err, results) => {
             try {
@@ -11,9 +12,9 @@ module.exports = {
                 throw err;
             }
         });
-    },
+    };
 
-    getExpense: (userDetails, cb) => {
+    getExpense(userDetails, cb) {
 
         db.query('SELECT sum(value) FROM transactions WHERE value < 0 AND MONTH(date) = MONTH(now()) AND YEAR(date)=YEAR(now()) AND ?', userDetails, (err, results) => {
             try {
@@ -22,9 +23,9 @@ module.exports = {
                 throw err;
             }
         });
-    },
+    };
 
-    getTransactions: (transactionDetails, cb) => {
+    getTransactions(transactionDetails, cb) {
 
         db.query('SELECT * FROM transactions WHERE ?', transactionDetails, async (err, results) => {
             try {
@@ -34,9 +35,9 @@ module.exports = {
             }
 
         });
-    },
+    };
 
-    addTransaction: (transactionDetails, cb) => {
+    addTransaction(transactionDetails, cb) {
 
         db.query('INSERT INTO transactions SET ?', transactionDetails, (err, results) => {
             try {
@@ -46,9 +47,9 @@ module.exports = {
             }
         });
 
-    },
+    };
 
-    deleteTransaction: (transactionDetails, cb) => {
+    deleteTransaction(transactionDetails, cb) {
 
         db.query('DELETE FROM transactions WHERE id = ? AND userId = ?', [transactionDetails.id, transactionDetails.userId], (err, results) => {
             try {
@@ -59,9 +60,9 @@ module.exports = {
             }
         });
 
-    },
+    };
 
-    getUserTransaction: (transactionDetails, cb) => {
+    getUserTransaction(transactionDetails, cb) {
 
         db.query('SELECT * FROM transactions WHERE id = ? AND userId = ?', [transactionDetails.id, transactionDetails.userId], async (err, results) => {
             try {
@@ -71,9 +72,9 @@ module.exports = {
             }
 
         });
-    },
+    };
 
-    filterTransactions: (transactionDetails, cb) => {
+    filterTransactions(transactionDetails, cb) {
 
         db.query(`SELECT * FROM transactions WHERE userId = ${transactionDetails.userId} AND date >= '${transactionDetails.dateStart}' AND date <= '${transactionDetails.dateEnd}' `, (err, results) => {
             try {
@@ -84,3 +85,5 @@ module.exports = {
         });
     }
 }
+
+module.exports = new TransactionsModel();

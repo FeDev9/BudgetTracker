@@ -2,10 +2,10 @@ const { redirect } = require("express/lib/response");
 const db = require("../database");
 const model = require('../models/transactionsModel');
 
-module.exports = {
+class TransactionsController {
 
 
-    profile: (req, res) => {
+    profile(req, res) {
 
         if (req.user) {
             /* recupero transazioni */
@@ -42,9 +42,9 @@ module.exports = {
         } else {
             res.redirect('/login');
         }
-    },
+    };
 
-    add: (req, res) => {
+    add(req, res) {
 
         if (req.user != undefined) {
 
@@ -64,9 +64,9 @@ module.exports = {
         } else {
             res.redirect('/');
         }
-    },
+    };
 
-    delete: (req, res) => {
+    delete(req, res) {
 
         const idTransaction = req.params.id;
         console.log(idTransaction);
@@ -84,9 +84,9 @@ module.exports = {
             }
         })
 
-    },
+    };
 
-    allTransactions: (req, res) => {
+    allTransactions(req, res) {
 
         if (req.user != undefined) {
 
@@ -99,9 +99,9 @@ module.exports = {
         } else {
             res.redirect('/');
         }
-    },
+    };
 
-    filter: (req, res) => {
+    filter(req, res) {
 
         const { dateStart, dateEnd } = req.body;
 
@@ -126,3 +126,5 @@ module.exports = {
     }
 
 }
+
+module.exports = new TransactionsController();

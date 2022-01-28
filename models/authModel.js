@@ -1,8 +1,8 @@
 const db = require('../database');
 
-module.exports = {
+class AuthModel {
 
-    getEmail: (userDetails, cb) => {
+    getEmail(userDetails, cb) {
 
         db.query('SELECT email FROM users WHERE ?', userDetails, (err, results) => {
 
@@ -14,9 +14,9 @@ module.exports = {
             }
 
         });
-    },
+    };
 
-    addUser: (userDetails, cb) => {
+    addUser(userDetails, cb) {
 
         db.query('INSERT INTO users SET ?', userDetails, (err, results) => {
             try {
@@ -25,9 +25,9 @@ module.exports = {
                 throw err;
             }
         });
-    },
+    };
 
-    getUser: (userDetails, cb) => {
+    getUser(userDetails, cb) {
         db.query('SELECT * FROM users WHERE ?', userDetails, (err, results) => {
             try {
                 return cb(results);
@@ -38,3 +38,5 @@ module.exports = {
     }
 
 }
+
+module.exports = new AuthModel();
